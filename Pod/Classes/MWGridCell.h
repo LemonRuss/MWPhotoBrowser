@@ -16,6 +16,7 @@
 @property (nonatomic) NSUInteger index;
 @property (nonatomic) id <MWPhoto> photo;
 @property (nonatomic) BOOL selectionMode;
+@property (nonatomic) BOOL multiplePhoto;
 @property (nonatomic) BOOL isSelected;
 
 - (void)displayImage;

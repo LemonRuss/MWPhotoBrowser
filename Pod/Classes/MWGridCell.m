@@ -142,7 +142,8 @@
 
 - (void)displayImage {
     _imageView.image = [_photo underlyingImage];
-    _selectedButton.hidden = !_selectionMode;
+    BOOL hidden = !_selectionMode || !_multiplePhoto;
+  _selectedButton.hidden = hidden;
     [self hideImageFailure];
 }
 

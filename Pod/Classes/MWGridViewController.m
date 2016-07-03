@@ -160,6 +160,7 @@
     cell.photo = photo;
     cell.gridController = self;
     cell.selectionMode = _selectionMode;
+  cell.multiplePhoto = _multiplePhoto;
     cell.isSelected = [_browser photoIsSelectedAtIndex:indexPath.row];
     cell.index = indexPath.row;
     UIImage *img = [_browser imageForPhoto:photo];

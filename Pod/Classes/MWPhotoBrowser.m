@@ -74,6 +74,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     _enableGrid = YES;
     _startOnGrid = NO;
     _enableSwipeToDismiss = YES;
+    _multiplePhoto = YES;
     _delayToHideElements = 5;
     _visiblePages = [[NSMutableSet alloc] init];
     _recycledPages = [[NSMutableSet alloc] init];
@@ -1149,7 +1150,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 }
 
 #pragma mark - Interactions
-
+//TODO
 - (void)selectedButtonTapped:(id)sender {
     UIButton *selectedButton = (UIButton *)sender;
     selectedButton.selected = !selectedButton.selected;
@@ -1160,8 +1161,12 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
             break;
         }
     }
+
     if (index != NSUIntegerMax) {
         [self setPhotoSelected:selectedButton.selected atIndex:index];
+        if (!_multiplePhoto) {
+          [self dismissViewControllerAnimated:YES completion:nil];
+        }
     }
 }
 
@@ -1316,6 +1321,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     _gridController = [[MWGridViewController alloc] init];
     _gridController.initialContentOffset = _currentGridContentOffset;
     _gridController.browser = self;
+    _gridController.multiplePhoto = _multiplePhoto;
     _gridController.selectionMode = _displaySelectionButtons;
     _gridController.view.frame = self.view.bounds;
     _gridController.view.frame = CGRectOffset(_gridController.view.frame, 0, (self.startOnGrid ? -1 : 1) * self.view.bounds.size.height);
